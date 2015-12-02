@@ -18,6 +18,9 @@ namespace ActiveDirectoryBackend
     {
         //Class member variables that are used multiple times.
         #region Member Variables
+
+        private DirectoryEntry de = null;
+
         private string m_email = null;
         private string m_name = null;
         private string m_password = null;
@@ -126,6 +129,16 @@ namespace ActiveDirectoryBackend
         #endregion
 
         //****************************************************************
+        // Date: 12-2-15 Author: Dominick Raimondi
+        // Purpose: Default Constructor
+        // Items to change: None
+        //*****************************************************************
+        public ActiveDirectory()
+        {
+            de = connectWithActiveDirectoryTLD();
+        }
+
+        //****************************************************************
         // Date: 8-18-15 Author: Dominick Raimondi
         // Purpose: Sends an email using SMTP
         // Items to change: None
@@ -208,7 +221,7 @@ namespace ActiveDirectoryBackend
         public bool searchActiveDirectory(string samAccount)
         {
 
-            DirectoryEntry de = connectWithActiveDirectoryTLD();
+            //DirectoryEntry de = connectWithActiveDirectoryTLD();
             DirectorySearcher deSearch = new DirectorySearcher();
             deSearch.SearchRoot = de;
 
@@ -240,7 +253,7 @@ namespace ActiveDirectoryBackend
         public string searchActiveDirectoryReturn(string samAccount)
         {
 
-            DirectoryEntry de = connectWithActiveDirectoryTLD();
+            //DirectoryEntry de = connectWithActiveDirectoryTLD();
             DirectorySearcher deSearch = new DirectorySearcher();
             deSearch.SearchRoot = de;
 
@@ -273,7 +286,7 @@ namespace ActiveDirectoryBackend
         public bool searchActiveDirectoryCN(string commonName)
         {
 
-            DirectoryEntry de = connectWithActiveDirectoryTLD();
+            //DirectoryEntry de = connectWithActiveDirectoryTLD();
             DirectorySearcher deSearch = new DirectorySearcher();
             deSearch.SearchRoot = de;
 
@@ -304,7 +317,7 @@ namespace ActiveDirectoryBackend
         public bool searchActiveDirectoryEmail(string email)
         {
 
-            DirectoryEntry de = connectWithActiveDirectoryTLD();
+            //DirectoryEntry de = connectWithActiveDirectoryTLD();
             DirectorySearcher deSearch = new DirectorySearcher();
             deSearch.SearchRoot = de;
 
@@ -335,9 +348,8 @@ namespace ActiveDirectoryBackend
         public void extractDataFromUser()
         {
             m_extractedUserData = null;
-            string ldapAddress = "LDAP://SOMETHING.ORG/COM";
 
-            DirectoryEntry de = new DirectoryEntry(ldapAddress, "USERNAME", "PASSWORD", AuthenticationTypes.SecureSocketsLayer);
+            //DirectoryEntry de = new DirectoryEntry(ldapAddress, "USERNAME", "PASSWORD", AuthenticationTypes.SecureSocketsLayer);
 
             DirectorySearcher deSearch = new DirectorySearcher();
             deSearch.SearchRoot = de;
@@ -376,7 +388,7 @@ namespace ActiveDirectoryBackend
             {
                 // Extracts the email associated with the sAMAccount entered
                 // to be used later to check if it matches the email entered.
-                DirectoryEntry de = connectWithActiveDirectoryTLD();
+
                 DirectorySearcher deSearch = new DirectorySearcher();
                 deSearch.SearchRoot = de;
 
